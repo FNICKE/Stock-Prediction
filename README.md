@@ -50,12 +50,18 @@ It visualizes the stock price along with its **Moving Average** (MA) to assist i
 
 -Recommendation: The system compares the stock price with the moving average to recommend whether to BUY/HOLD or SELL the stock.
 
+## 🧑‍💻 Code Structure
+PythonFinance.py
+This file contains the core Finance class, which fetches historical stock data, calculates the moving average, and generates the necessary graph for predictions.
+
+- get_stock_price(): Fetches historical stock data.
+- get_moving_avg(): Calculates the moving average and plots the stock price graph with predictions.
+
 ## 📊 Sample Output
 ### Stock Price & Moving Average Visualization
 A sample graph might look like this, with Yellow representing the stock price and Cyan for the 5-day moving average.
 
----bashS
-Date -> Timeline of stock price
-Price -> Price of the stock over time
-BUY/HOLD or SELL -> Action based on moving average comparison
+- Date -> Timeline of stock price
+- Price -> Price of the stock over time
+- BUY/HOLD or SELL -> Action based on moving average comparison
 
