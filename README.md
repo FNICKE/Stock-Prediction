@@ -33,12 +33,29 @@ It visualizes the stock price along with its **Moving Average** (MA) to assist i
 
 ---
 
-## 📋 Requirements
-
-To get started, make sure you have the following libraries installed:
-
-```bash
 
 ## How to Run
 - git clone https://github.com/FNICKE/stock-genie.git
 - cd stock-genie
+
+- Install required Python libraries (mentioned above)
+
+## How It Works
+- Data Collection: The program fetches the stock data for the ticker symbol entered using Yahoo 
+ Finance API (pandas_datareader).
+
+- Moving Average Calculation: The program calculates the 5-day moving average for the stock.
+
+-Graph Generation: The stock price and moving average are plotted using Matplotlib.
+
+-Recommendation: The system compares the stock price with the moving average to recommend whether to BUY/HOLD or SELL the stock.
+
+## 📊 Sample Output
+### Stock Price & Moving Average Visualization
+A sample graph might look like this, with Yellow representing the stock price and Cyan for the 5-day moving average.
+
+---bashS
+Date -> Timeline of stock price
+Price -> Price of the stock over time
+BUY/HOLD or SELL -> Action based on moving average comparison
+
