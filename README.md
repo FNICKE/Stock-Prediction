@@ -20,7 +20,8 @@ It visualizes the stock price along with its **Moving Average** (MA) to assist i
 
 ## 🖼️ Screenshot
 
-![Stock Genie GUI](./assets/stock_genie_screenshot.png)
+![Stock Predictor Screenshot](Stock Predictor/image.png)
+
 
 ---
 
