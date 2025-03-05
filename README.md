@@ -10,59 +10,78 @@ It visualizes the stock price along with its **Moving Average** (MA) to assist i
 
 ## 🛠️ Technologies Used
 
-- **Python** (3.x)
-- **PyQt5** - for the graphical user interface (GUI)
-- **Matplotlib** - for plotting graphs
-- **Pandas** - for handling stock data
-- **Pandas DataReader** - to fetch stock market data from Yahoo Finance
+- 🐍 **Python** (3.x)
+- 🖥️ **PyQt5** - for the graphical user interface (GUI)
+- 📊 **Matplotlib** - for plotting graphs
+- 🗂️ **Pandas** - for handling stock data
+- 🌐 **Pandas DataReader** - to fetch stock market data from Yahoo Finance
 
 ---
 
-## 🖼️ Screenshot
+## 🖼️ Preview
 
-![Stock Predictor Screenshot](Stock Predictor/image.png)
-
+![Stock Predictor Preview](Stock%20Predictor/image.png)
 
 ---
 
 ## 🔧 Features
 
-- **User-friendly interface** with a textbox to enter a stock ticker.
-- **Stock Price Graph** with Yellow representing the stock price and Cyan showing the 5-day moving average.
-- **Buy/Hold** or **Sell** recommendation based on the stock price relative to the moving average.
-- Fetch historical stock data since **1st January 2015**.
+- ✅ **User-friendly interface** with a textbox to enter a stock ticker.
+- 📈 **Stock Price Graph** with **Yellow** representing the stock price and **Cyan** showing the 5-day moving average.
+- 📢 **Buy/Hold** or **Sell** recommendation based on the stock price relative to the moving average.
+- ⏳ Fetch historical stock data since **1st January 2015**.
 
 ---
 
+## 🚀 Installation & Setup
 
-## How to Run
-- git clone https://github.com/FNICKE/stock-genie.git
-- cd stock-genie
+### 🔽 Clone the Repository
+```bash
+git clone https://github.com/FNICKE/stock-genie.git
+cd stock-genie
+```
 
-- Install required Python libraries (mentioned above)
+### 📦 Install Required Dependencies
+```bash
+pip install pyqt5 matplotlib pandas pandas-datareader
+```
 
-## How It Works
-- Data Collection: The program fetches the stock data for the ticker symbol entered using Yahoo 
- Finance API (pandas_datareader).
+### ▶️ Run the Application
+```bash
+python PythonFinance.py
+```
 
-- Moving Average Calculation: The program calculates the 5-day moving average for the stock.
+---
 
--Graph Generation: The stock price and moving average are plotted using Matplotlib.
+## 🛠️ How It Works
 
--Recommendation: The system compares the stock price with the moving average to recommend whether to BUY/HOLD or SELL the stock.
+1. **📊 Data Collection:** The program fetches the stock data for the ticker symbol entered using **Yahoo Finance API** (pandas_datareader).
+2. **📉 Moving Average Calculation:** The program calculates the **5-day moving average** for the stock.
+3. **📈 Graph Generation:** The stock price and moving average are plotted using **Matplotlib**.
+4. **📢 Recommendation:** The system compares the stock price with the moving average to recommend whether to **BUY/HOLD** or **SELL** the stock.
 
-## 🧑‍💻 Code Structure
-PythonFinance.py
-This file contains the core Finance class, which fetches historical stock data, calculates the moving average, and generates the necessary graph for predictions.
+---
 
-- get_stock_price(): Fetches historical stock data.
-- get_moving_avg(): Calculates the moving average and plots the stock price graph with predictions.
+## 📂 Code Structure
+
+📄 **PythonFinance.py**  
+This file contains the core **Finance** class, which fetches historical stock data, calculates the moving average, and generates the necessary graph for predictions.
+
+- 🛠️ **get_stock_price()**: Fetches historical stock data.
+- 📊 **get_moving_avg()**: Calculates the moving average and plots the stock price graph with predictions.
+
+---
 
 ## 📊 Sample Output
-### Stock Price & Moving Average Visualization
-A sample graph might look like this, with Yellow representing the stock price and Cyan for the 5-day moving average.
 
-- Date -> Timeline of stock price
-- Price -> Price of the stock over time
-- BUY/HOLD or SELL -> Action based on moving average comparison
+### **Stock Price & Moving Average Visualization**
+A sample graph might look like this, with **Yellow** representing the stock price and **Cyan** for the **5-day moving average**.
+
+📅 **Date:** Timeline of stock price  
+💰 **Price:** Price of the stock over time  
+📢 **BUY/HOLD or SELL:** Action based on moving average comparison  
+
+---
+
+💡 *Stock Genie helps you make smarter investment decisions using historical data trends!* 📈✨
 
