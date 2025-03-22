@@ -1,93 +1,69 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'main.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PythonFinance import Finance
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("Stock Genie")
-        MainWindow.resize(803, 600)
+class Ui_MainWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi()
+    
+    def setupUi(self):
+        self.setWindowTitle("Stock Genie")
+        self.resize(800, 600)
+        self.setStyleSheet("background-color: rgb(35, 3, 36);")
         
+        # Central Widget
+        self.centralwidget = QtWidgets.QWidget(self)
+        self.setCentralWidget(self.centralwidget)
         
-        
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
-        
-        self.centralwidget.setStyleSheet("background-color: rgb(35, 3, 36);")
-        
+        # Frame
         self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(190, 50, 441, 461))
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame.setObjectName("frame")
-        self.frame.setStyleSheet("background-color: rgb(27, 56, 49);")
-        self.label = QtWidgets.QLabel(self.frame)
-        self.label.setGeometry(QtCore.QRect(90, 50, 281, 71))
-        font = QtGui.QFont()
-        font.setFamily("Tw Cen MT")
-        font.setPointSize(36)
-        font.setBold(True)
-        font.setWeight(75)
+        self.frame.setGeometry(QtCore.QRect(180, 50, 440, 450))
+        self.frame.setStyleSheet("background-color: rgb(27, 56, 49); border-radius: 15px;")
         
-        self.label.setFont(font)
-        self.label.setStyleSheet("color:white;")
-        self.label.setObjectName("label")
+        # Title Label
+        self.label = QtWidgets.QLabel("STOCK GENIE", self.frame)
+        self.label.setGeometry(QtCore.QRect(90, 40, 281, 71))
+        self.label.setFont(QtGui.QFont("Tw Cen MT", 36, QtGui.QFont.Bold))
+        self.label.setStyleSheet("color: white;")
+        
+        # Input Field
         self.lineEdit = QtWidgets.QLineEdit(self.frame)
-        self.lineEdit.setStyleSheet("color:yellow;")
-        self.lineEdit.setGeometry(QtCore.QRect(80, 200, 261, 41))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        self.lineEdit.setFont(font)
-        self.lineEdit.setText("")
-        self.lineEdit.setObjectName("lineEdit")
-        self.pushButton = QtWidgets.QPushButton(self.frame)
-        self.pushButton.setGeometry(QtCore.QRect(160, 290, 111, 41))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("color:white;")
-        self.pushButton.setObjectName("pushButton")
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 803, 21))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        self.lineEdit.setGeometry(QtCore.QRect(80, 180, 261, 41))
+        self.lineEdit.setFont(QtGui.QFont("Arial", 14))
+        self.lineEdit.setStyleSheet("color: yellow; border-radius: 10px; padding: 5px;")
+        self.lineEdit.setPlaceholderText("Enter Ticker Symbol")
         
+        # Predict Button
+        self.pushButton = QtWidgets.QPushButton("PREDICT", self.frame)
+        self.pushButton.setGeometry(QtCore.QRect(150, 260, 140, 45))
+        self.pushButton.setFont(QtGui.QFont("Arial", 14, QtGui.QFont.Bold))
+        self.pushButton.setStyleSheet("color: white; background-color: #0057B8; border-radius: 10px;")
         self.pushButton.clicked.connect(self.pressed)
-
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-    def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "STOCK GENIE"))
-        self.lineEdit.setPlaceholderText(_translate("MainWindow", "TICKER SYMBOL"))
-        self.pushButton.setText(_translate("MainWindow", "PREDICT"))
-
-    def pressed(self):
-        ticker = self.lineEdit.text()
-        finance = Finance()
-        finance.get_moving_avg(ticker)
         
+        # Status Label
+        self.statusLabel = QtWidgets.QLabel("", self.frame)
+        self.statusLabel.setGeometry(QtCore.QRect(100, 330, 250, 40))
+        self.statusLabel.setFont(QtGui.QFont("Arial", 12))
+        self.statusLabel.setStyleSheet("color: white;")
+        self.statusLabel.setAlignment(QtCore.Qt.AlignCenter)
+        
+    def pressed(self):
+        ticker = self.lineEdit.text().strip().upper()
+        
+        if not ticker:
+            self.statusLabel.setText("⚠️ Please enter a valid ticker symbol.")
+            return
+        
+        try:
+            finance = Finance()
+            result = finance.get_moving_avg(ticker)
+            self.statusLabel.setText(f"✅ Prediction complete for {ticker}.")
+        except Exception as e:
+            self.statusLabel.setText(f"❌ Error: {str(e)}")
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    window = Ui_MainWindow()
+    window.show()
     sys.exit(app.exec_())
-
